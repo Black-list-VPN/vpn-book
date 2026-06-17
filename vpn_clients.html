@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С самого начала — VPN для самых маленьких</title>
+    <title>VPN Клиенты — VPN для самых маленьких</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -103,17 +103,17 @@
             font-size: 1.8rem;
             font-weight: 600;
             letter-spacing: -0.02em;
-            margin-top: 3rem;
-            margin-bottom: 1.2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
             border-left: 5px solid #0b1a2e;
             padding-left: 1rem;
         }
 
         h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-top: 1.8rem;
-            margin-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 0.3rem;
         }
 
         p {
@@ -121,49 +121,170 @@
             color: #1e293b;
         }
 
-        /* ----- Нумерованные шаги ----- */
-        .step {
+        /* ----- Карточка клиента ----- */
+        .client-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 16px;
-            padding: 1.8rem 2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            transition: border-color 0.2s ease;
+            margin-bottom: 1.2rem;
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
         }
 
-        .step:hover {
+        .client-card:hover {
             border-color: #b9c8db;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
-        .step-number {
+        .client-header {
+            padding: 1.5rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            align-items: flex-start;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s ease;
+        }
+
+        .client-header:hover {
+            background: #f8fafc;
+        }
+
+        .client-icon {
+            font-size: 2.8rem;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 3.5rem;
+            text-align: center;
+        }
+
+        .client-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .client-info .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.8rem;
+            margin: 0.3rem 0 0.6rem;
+        }
+
+        .badge {
             display: inline-block;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #ffffff;
-            background: #0b1a2e;
-            padding: 0.1rem 0.9rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 0.15rem 0.7rem;
             border-radius: 20px;
-            margin-bottom: 0.8rem;
-            letter-spacing: 0.02em;
+            background: #e9edf2;
+            color: #1e3a5f;
         }
 
-        .step h3 {
+        .badge.green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge.blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge.orange {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge.purple {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .badge.red {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .client-info p {
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .client-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .client-links a {
+            color: #1e3a5f;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 1px dotted #cbd5e1;
+            transition: border-color 0.2s ease;
+        }
+
+        .client-links a:hover {
+            border-bottom-color: #0b1a2e;
+        }
+
+        /* ----- Стрелка-индикатор ----- */
+        .toggle-indicator {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .client-card.open .toggle-indicator {
+            transform: rotate(180deg);
+        }
+
+        /* ----- Выпадающий блок с инструкцией ----- */
+        .client-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 1.8rem;
+            background: #fafbfc;
+            border-top: 1px solid transparent;
+        }
+
+        .client-card.open .client-details {
+            max-height: 2000px;
+            padding: 1.5rem 1.8rem;
+            border-top-color: #e2e8f0;
+        }
+
+        .client-details h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.3rem;
+            color: #0b1a2e;
+        }
+
+        .client-details h4:first-child {
             margin-top: 0;
-            font-size: 1.3rem;
         }
 
-        .step ul, .step ol {
-            margin: 0.5rem 0 0.2rem 1.5rem;
+        .client-details ol, .client-details ul {
+            margin: 0.3rem 0 0.8rem 1.5rem;
             color: #1e293b;
         }
 
-        .step li {
-            margin-bottom: 0.3rem;
+        .client-details li {
+            margin-bottom: 0.2rem;
         }
 
-        .step code {
+        .client-details code {
             background: #e9edf2;
             padding: 0.1rem 0.4rem;
             border-radius: 4px;
@@ -171,86 +292,49 @@
             font-family: 'Inter', monospace;
         }
 
-        /* ----- Выделенные блоки ----- */
-        .notice {
-            border-radius: 10px;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            font-size: 0.95rem;
+        .client-details .notice {
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            margin: 0.6rem 0;
+            font-size: 0.9rem;
         }
 
-        .notice.important {
-            background: #fef3c7;
-            border-left: 5px solid #f59e0b;
-            color: #78350f;
-        }
-
-        .notice.tip {
+        .client-details .notice.tip {
             background: #dbeafe;
-            border-left: 5px solid #3b82f6;
+            border-left: 4px solid #3b82f6;
             color: #1e3a5f;
         }
 
-        .notice.warning {
-            background: #fecaca;
-            border-left: 5px solid #dc2626;
-            color: #7f1d1d;
+        .client-details .notice.warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            color: #78350f;
         }
 
-        .notice.success {
-            background: #d1fae5;
-            border-left: 5px solid #10b981;
-            color: #065f46;
-        }
-
-        /* ----- Блок скачивания ----- */
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 0.8rem;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .download-grid .download-item {
+        /* ----- Блок советов ----- */
+        .tip-box {
             background: #f1f4f9;
             border-radius: 12px;
-            padding: 0.8rem 1rem;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-            transition: border-color 0.2s ease, background 0.2s ease;
-            text-decoration: none;
-            color: #0b1a2e;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid #0b1a2e;
         }
 
-        .download-grid .download-item:hover {
-            border-color: #0b1a2e;
-            background: #e9edf2;
+        .tip-box h3 {
+            margin-top: 0;
         }
 
-        .download-grid .download-item .os {
-            display: block;
-            font-weight: 600;
-            font-size: 1rem;
+        .tip-box ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .download-grid .download-item .platform {
-            display: block;
-            font-weight: 400;
-            font-size: 0.75rem;
-            color: #64748b;
-            margin-top: 0.15rem;
-        }
-
-        /* ----- Скриншот-заглушка (можно заменить на реальный скрин) ----- */
-        .screenshot-placeholder {
-            background: #e9edf2;
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.9rem;
-            border: 2px dashed #cbd5e1;
-            margin: 0.8rem 0;
+        .tip-box li {
+            padding: 0.3rem 0;
+            padding-left: 1.6rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%230b1a2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+            background-size: 1rem;
+            color: #1e293b;
         }
 
         /* ----- Подвал ----- */
@@ -264,12 +348,6 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 0.5rem;
-        }
-
-        .footer a {
-            color: #1e3a5f;
-            text-decoration: none;
-            border-bottom: 1px dotted #cbd5e1;
         }
 
         /* ----- Адаптивность ----- */
@@ -291,11 +369,27 @@
                 font-size: 1rem;
                 padding-left: 1rem;
             }
-            .step {
-                padding: 1.2rem 1.2rem;
+            .client-header {
+                padding: 1.2rem;
+                flex-direction: column;
+                gap: 0.5rem;
             }
-            .download-grid {
-                grid-template-columns: 1fr 1fr;
+            .client-icon {
+                font-size: 2.4rem;
+                width: auto;
+                text-align: left;
+            }
+            .client-details {
+                padding: 0 1.2rem;
+            }
+            .client-card.open .client-details {
+                padding: 1rem 1.2rem;
+            }
+            .client-details ol, .client-details ul {
+                margin-left: 1rem;
+            }
+            .tip-box {
+                padding: 1.2rem;
             }
         }
     </style>
@@ -313,291 +407,598 @@
             <a href="index.html">Главная</a>
             <a href="alphabet.html">Азбука</a>
             <a href="protocols.html">Протоколы</a>
-            <a href="vpn_clients.html">Клиенты</a>
-            <a href="setup.html" class="active">С самого начала</a>
+            <a href="vpn_clients.html" class="active">Клиенты</a>
+            <a href="setup.html">С самого начала</a>
         </nav>
     </header>
 
     <!-- ЗАГОЛОВОК -->
-    <h1>🚀 С самого начала</h1>
+    <h1>VPN Клиенты</h1>
     <div class="page-desc">
-        Инструкция, чтобы всё заработало. Берём <strong>Hiddify</strong> — самый простой и надёжный клиент. 
-        Просто повторяйте шаг за шагом.
+        Программы и приложения, с помощью которых вы подключаетесь к VPN. 
+        Нажмите на любой клиент, чтобы раскрыть подробную инструкцию по установке и настройке.
     </div>
 
     <!-- ============================================================ -->
-    <!-- ВСТУПЛЕНИЕ: ПОЧЕМУ HIDDIFY -->
+    <!-- МОБИЛЬНЫЕ КЛИЕНТЫ -->
     <!-- ============================================================ -->
-    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 2rem;">
-        <p style="margin-bottom: 0.5rem;">
-            <strong>Почему Hiddify?</strong> Он работает на <strong>всех устройствах</strong> (Windows, macOS, Linux, Android, iOS), 
-            поддерживает <strong>все современные протоколы</strong> (VLESS, VMess, Trojan, Shadowsocks, WireGuard), 
-            а главное — у него <strong>очень простой интерфейс</strong>. 
-            Даже если вы видите VPN впервые — справитесь за 5 минут.
-        </p>
-        <p style="margin-bottom: 0;">
-            🔗 Официальный сайт: <a href="https://hiddify.com" target="_blank" style="color: #0b1a2e; font-weight: 600; text-decoration: underline dotted;">hiddify.com</a>
-        </p>
-    </div>
+    <h2>📱 Мобильные (Android &amp; iOS)</h2>
 
-    <!-- ============================================================ -->
-    <!-- ШАГ 1: СКАЧАТЬ HIDDIFY -->
-    <!-- ============================================================ -->
-    <div class="step">
-        <span class="step-number">Шаг 1</span>
-        <h3>Скачать Hiddify</h3>
-        <p>
-            Выберите версию для вашего устройства и скачайте установочный файл:
-        </p>
-    
-        <div class="download-grid">
-            <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="download-item">
-                <span class="os">🪟 Windows</span>
-                <span class="platform">.exe установщик</span>
-            </a>
-            <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="download-item">
-                <span class="os">🍎 macOS</span>
-                <span class="platform">.dmg</span>
-            </a>
-            <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="download-item">
-                <span class="os">🐧 Linux</span>
-                <span class="platform">.deb / .AppImage</span>
-            </a>
-            <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="download-item">
-                <span class="os">🤖 Android (APK)</span>
-                <span class="platform">GitHub</span>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=app.hiddify" target="_blank" class="download-item">
-                <span class="os">🤖 Android</span>
-                <span class="platform">Google Play</span>
-            </a>
-            <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" class="download-item">
-                <span class="os">📱 iOS (TestFlight)</span>
-                <span class="platform">GitHub</span>
-            </a>
-            <a href="https://apps.apple.com/app/hiddify/id6446858370" target="_blank" class="download-item">
-                <span class="os">📱 iOS</span>
-                <span class="platform">App Store</span>
-            </a>
+    <!-- 1. v2rayNG -->
+    <div class="client-card" id="v2rayNG">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">📡</div>
+            <div class="client-info">
+                <h3>v2rayNG</h3>
+                <div class="badge-group">
+                    <span class="badge green">Android</span>
+                    <span class="badge blue">Бесплатный</span>
+                    <span class="badge orange">С открытым кодом</span>
+                </div>
+                <p>
+                    Самый популярный клиент для Android. Поддерживает <strong>VMess, VLESS, Shadowsocks, Trojan</strong> и другие протоколы. 
+                    Умеет работать с подписками и настраивать маршрутизацию.
+                </p>
+                <div class="client-links">
+                    <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">⬇ Скачать (GitHub)</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank">Google Play</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
         </div>
-    
-        <div class="notice tip">
-            💡 <strong>Совет:</strong> Все версии Hiddify распространяются <strong>бесплатно</strong> и с открытым исходным кодом. 
-            Скачивайте только с официальных источников:
-            <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" style="color: #1e40af; text-decoration: underline dotted;">GitHub</a>, 
-            <a href="https://play.google.com/store/apps/details?id=app.hiddify" target="_blank" style="color: #1e40af; text-decoration: underline dotted;">Google Play</a> 
-            или 
-            <a href="https://apps.apple.com/app/hiddify/id6446858370" target="_blank" style="color: #1e40af; text-decoration: underline dotted;">App Store</a>.
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li>Скачайте APK-файл с <a href="https://github.com/2dust/v2rayNG/releases" target="_blank">GitHub</a> или установите из <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank">Google Play</a>.</li>
+                <li>Откройте скачанный файл и нажмите «Установить». Если Android запросит разрешение на установку из неизвестных источников — разрешите.</li>
+                <li>После установки откройте приложение.</li>
+            </ol>
+
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>На главном экране нажмите на <strong>иконку «+»</strong> в правом нижнем углу.</li>
+                <li>Выберите <strong>«Импорт из буфера обмена»</strong> (если ссылка скопирована) или <strong>«Импорт из подписки»</strong>.</li>
+                <li>Вставьте ссылку-подписку и нажмите «ОК».</li>
+                <li>Клиент загрузит все серверы — они появятся в списке.</li>
+            </ol>
+
+            <h4>📁 Импорт из файла</h4>
+            <ol>
+                <li>Нажмите на <strong>иконку «+»</strong> → <strong>«Импорт из файла»</strong>.</li>
+                <li>Выберите файл конфигурации (<code>.json</code> или <code>.txt</code>) в файловом менеджере.</li>
+                <li>Подтвердите импорт — сервер появится в списке.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер из списка (один клик).</li>
+                <li>Нажмите на <strong>кнопку «▼»</strong> (или треугольник) в правом нижнем углу, чтобы подключиться.</li>
+                <li>Подождите 2–3 секунды — иконка станет зелёной, а в строке состояния появится значок VPN.</li>
+            </ol>
+
+            <div class="notice tip">
+                💡 <strong>Совет:</strong> Если у вас несколько серверов, выберите тот, у которого меньше «нагрузка» (латенси) — он будет быстрее.
+            </div>
         </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- ШАГ 2: УСТАНОВИТЬ -->
-    <!-- ============================================================ -->
-    <div class="step">
-        <span class="step-number">Шаг 2</span>
-        <h3>Установить Hiddify</h3>
+    <!-- 2. Nekobox -->
+    <div class="client-card" id="Nekobox">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">📦</div>
+            <div class="client-info">
+                <h3>Nekobox</h3>
+                <div class="badge-group">
+                    <span class="badge green">Android</span>
+                    <span class="badge purple">iOS (TestFlight)</span>
+                    <span class="badge blue">Бесплатный</span>
+                </div>
+                <p>
+                    Современный клиент на базе <strong>Sing-box</strong>. Поддерживает все современные протоколы, включая <strong>VLESS+Reality</strong>, 
+                    Hysteria, TUIC. Красивый интерфейс и регулярные обновления.
+                </p>
+                <div class="client-links">
+                    <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank">⬇ Скачать (Android)</a>
+                    <a href="https://testflight.apple.com/join/..." target="_blank">TestFlight (iOS)</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка (Android)</h4>
+            <ol>
+                <li>Скачайте APK с <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank">GitHub</a>.</li>
+                <li>Установите, разрешив установку из неизвестных источников, если потребуется.</li>
+                <li>Откройте приложение.</li>
+            </ol>
 
-        <h4 style="margin-top: 0.5rem; font-weight: 600;">🪟 Windows / 🍎 macOS / 🐧 Linux</h4>
-        <ol>
-            <li>Запустите скачанный установочный файл.</li>
-            <li>Следуйте инструкциям установщика (обычно достаточно нажимать «Далее» → «Установить»).</li>
-            <li>После установки запустите Hiddify.</li>
-        </ol>
+            <h4>📥 Установка (iOS)</h4>
+            <ol>
+                <li>Установите приложение <strong>TestFlight</strong> из App Store.</li>
+                <li>Перейдите по ссылке приглашения (обычно её даёт администратор VPN).</li>
+                <li>Нажмите «Принять» и установите Nekobox через TestFlight.</li>
+            </ol>
 
-        <h4 style="margin-top: 1.2rem; font-weight: 600;">🤖 Android</h4>
-        <ol>
-            <li>Откройте скачанный <code>.apk</code> файл.</li>
-            <li>Если система запросит разрешение на установку из неизвестных источников — разрешите.</li>
-            <li>Нажмите «Установить» и дождитесь завершения.</li>
-            <li>Откройте приложение.</li>
-        </ol>
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>На главном экране нажмите на <strong>«+»</strong> (или «Добавить профиль»).</li>
+                <li>Выберите <strong>«Подписка»</strong>.</li>
+                <li>Вставьте ссылку и нажмите «Сохранить».</li>
+                <li>Серверы загрузятся автоматически.</li>
+            </ol>
 
-        <h4 style="margin-top: 1.2rem; font-weight: 600;">📱 iOS</h4>
-        <ol>
-            <li>Установите Hiddify из <a href="https://apps.apple.com/app/hiddify/id6446858370" target="_blank" style="color: #0b1a2e; text-decoration: underline dotted;">App Store</a>.</li>
-            <li>Откройте приложение.</li>
-        </ol>
+            <h4>📁 Импорт из файла</h4>
+            <ol>
+                <li>Нажмите <strong>«+»</strong> → <strong>«Импорт из файла»</strong>.</li>
+                <li>Выберите файл <code>.json</code> или <code>.txt</code>.</li>
+                <li>Подтвердите импорт.</li>
+            </ol>
 
-        <div class="notice success">
-            ✅ <strong>Готово!</strong> Hiddify установлен. Переходим к следующему шагу.
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер из списка.</li>
+                <li>Нажмите на <strong>кнопку подключения</strong> (обычно это большой круг или переключатель внизу экрана).</li>
+                <li>Готово — вы подключены!</li>
+            </ol>
+
+            <div class="notice tip">
+                💡 <strong>Особенность:</strong> Nekobox поддерживает <strong>Reality</strong> — это самый надёжный способ обхода блокировок на сегодняшний день.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Hiddify -->
+    <div class="client-card" id="Hiddify">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">🛡️</div>
+            <div class="client-info">
+                <h3>Hiddify</h3>
+                <div class="badge-group">
+                    <span class="badge green">Android</span>
+                    <span class="badge blue">iOS</span>
+                    <span class="badge blue">Бесплатный</span>
+                </div>
+                <p>
+                    Универсальный клиент с простым интерфейсом. Поддерживает <strong>VLESS, VMess, Trojan, Shadowsocks, WireGuard</strong>. 
+                    Есть встроенный VPN-сервис и поддержка подписок. Отлично подходит для новичков.
+                </p>
+                <div class="client-links">
+                    <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">⬇ Скачать (GitHub)</a>
+                    <a href="https://apps.apple.com/app/hiddify/id6446858370" target="_blank">App Store</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li><strong>Android:</strong> Скачайте APK с <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">GitHub</a> или установите через Google Play (если доступно).</li>
+                <li><strong>iOS:</strong> Установите из <a href="https://apps.apple.com/app/hiddify/id6446858370" target="_blank">App Store</a>.</li>
+                <li>Откройте приложение после установки.</li>
+            </ol>
+
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>На главном экране нажмите <strong>«Импорт»</strong> (или «+»).</li>
+                <li>Выберите <strong>«Подписка»</strong>.</li>
+                <li>Вставьте ссылку и нажмите «Добавить».</li>
+                <li>Список серверов обновится автоматически.</li>
+            </ol>
+
+            <h4>📁 Импорт из файла</h4>
+            <ol>
+                <li>Нажмите <strong>«Импорт»</strong> → <strong>«Из файла»</strong>.</li>
+                <li>Выберите файл конфигурации.</li>
+                <li>Подтвердите импорт.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер в списке.</li>
+                <li>Нажмите на <strong>большую кнопку «Подключиться»</strong> внизу экрана.</li>
+                <li>При первом подключении Android может запросить разрешение на VPN — подтвердите.</li>
+            </ol>
+
+            <div class="notice tip">
+                💡 Hiddify — один из самых простых клиентов. Интерфейс интуитивно понятен даже для тех, кто видит VPN впервые.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Shadowrocket (iOS) -->
+    <div class="client-card" id="Shadowrocket">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">🚀</div>
+            <div class="client-info">
+                <h3>Shadowrocket</h3>
+                <div class="badge-group">
+                    <span class="badge blue">iOS</span>
+                    <span class="badge orange">Платный ($2.99)</span>
+                </div>
+                <p>
+                    Один из лучших клиентов для iOS. Поддерживает <strong>Shadowsocks, VMess, VLESS, Trojan, WireGuard</strong>. 
+                    Позволяет гибко настраивать маршрутизацию и работать с подписками.
+                </p>
+                <div class="client-links">
+                    <a href="https://apps.apple.com/app/shadowrocket/id932747118" target="_blank">⬇ App Store</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li>Купите и установите Shadowrocket из <a href="https://apps.apple.com/app/shadowrocket/id932747118" target="_blank">App Store</a> (стоимость ~$2.99).</li>
+                <li>Откройте приложение.</li>
+            </ol>
+
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>На главном экране нажмите на <strong>«+»</strong> в правом верхнем углу.</li>
+                <li>Выберите <strong>«Subscribe»</strong> (подписка).</li>
+                <li>Вставьте ссылку и нажмите «Сохранить».</li>
+                <li>Серверы загрузятся и появятся в списке.</li>
+            </ol>
+
+            <h4>📁 Импорт из файла</h4>
+            <ol>
+                <li>Нажмите <strong>«+»</strong> → <strong>«Import from File»</strong>.</li>
+                <li>Выберите файл в облачном хранилище или перешлите его в приложение.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер из списка.</li>
+                <li>Включите <strong>переключатель «Connect»</strong> в верхней части экрана.</li>
+                <li>При первом подключении iOS запросит разрешение на добавление VPN — подтвердите.</li>
+            </ol>
+
+            <div class="notice tip">
+                💡 Shadowrocket позволяет тонко настраивать маршрутизацию: можно указать, какие приложения или сайты идут через VPN, а какие — напрямую.
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Outline (iOS / Android) -->
+    <div class="client-card" id="Outline">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">🌐</div>
+            <div class="client-info">
+                <h3>Outline</h3>
+                <div class="badge-group">
+                    <span class="badge green">Android</span>
+                    <span class="badge blue">iOS</span>
+                    <span class="badge blue">Бесплатный</span>
+                </div>
+                <p>
+                    Клиент от Jigsaw (дочерняя компания Alphabet). Работает только с <strong>Shadowsocks</strong>. 
+                    Очень простой интерфейс, идеален для новичков.
+                </p>
+                <div class="client-links">
+                    <a href="https://play.google.com/store/apps/details?id=org.outline.android.client" target="_blank">Google Play</a>
+                    <a href="https://apps.apple.com/app/outline-app/id1356177741" target="_blank">App Store</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li>Установите Outline из <a href="https://play.google.com/store/apps/details?id=org.outline.android.client" target="_blank">Google Play</a> или <a href="https://apps.apple.com/app/outline-app/id1356177741" target="_blank">App Store</a>.</li>
+                <li>Откройте приложение.</li>
+            </ol>
+
+            <h4>🔗 Импорт конфига</h4>
+            <ol>
+                <li>Нажмите <strong>«+»</strong> или <strong>«Добавить сервер»</strong>.</li>
+                <li>Вставьте <strong>ссылку-ключ</strong> (начинается с <code>ss://</code>) или отсканируйте QR-код.</li>
+                <li>Сервер появится в списке.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер.</li>
+                <li>Нажмите на <strong>переключатель</strong>, чтобы подключиться.</li>
+                <li>Готово — интернет защищён.</li>
+            </ol>
+
+            <div class="notice warning">
+                ⚠️ Outline работает <strong>только с Shadowsocks</strong>. Если ваш провайдер использует VLESS или Trojan — этот клиент не подойдёт.
+            </div>
         </div>
     </div>
 
     <!-- ============================================================ -->
-    <!-- ШАГ 3: ГДЕ ВЗЯТЬ ПОДПИСКУ -->
+    <!-- ДЕСКТОПНЫЕ КЛИЕНТЫ -->
     <!-- ============================================================ -->
-    <div class="step">
-        <span class="step-number">Шаг 3</span>
-        <h3>Где взять подписку (конфигурацию)</h3>
-        <p>
-            Чтобы Hiddify знал, куда подключаться, ему нужна <strong>подписка</strong> — специальная ссылка с настройками серверов.
-        </p>
+    <h2>💻 Десктопные (Windows, macOS, Linux)</h2>
 
-        <p>
-            Обычно подписку вы получаете от:
-        </p>
+    <!-- 6. Nekoray / Nekobox (Desktop) -->
+    <div class="client-card" id="Nekoray">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">🖥️</div>
+            <div class="client-info">
+                <h3>Nekoray / Nekobox Desktop</h3>
+                <div class="badge-group">
+                    <span class="badge green">Windows</span>
+                    <span class="badge blue">macOS</span>
+                    <span class="badge purple">Linux</span>
+                    <span class="badge blue">Бесплатный</span>
+                </div>
+                <p>
+                    Десктопная версия Nekobox на базе <strong>Sing-box</strong>. Поддерживает все современные протоколы: 
+                    <strong>VLESS+Reality, Trojan, Shadowsocks, Hysteria, TUIC</strong>. Есть графический интерфейс и режим TUN.
+                </p>
+                <div class="client-links">
+                    <a href="https://github.com/MatsuriDayo/nekoray/releases" target="_blank">⬇ Скачать (GitHub)</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li><strong>Windows:</strong> Скачайте <code>.exe</code> или <code>.zip</code> с <a href="https://github.com/MatsuriDayo/nekoray/releases" target="_blank">GitHub</a>, распакуйте и запустите <code>nekoray.exe</code>.</li>
+                <li><strong>macOS:</strong> Скачайте <code>.dmg</code> и установите.</li>
+                <li><strong>Linux:</strong> Скачайте <code>.AppImage</code> или пакет для вашего дистрибутива.</li>
+            </ol>
+
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>Откройте Nekoray.</li>
+                <li>Нажмите <strong>«Настройки»</strong> → <strong>«Группы»</strong>.</li>
+                <li>Нажмите <strong>«Добавить»</strong> → выберите <strong>«Подписка»</strong>.</li>
+                <li>Вставьте ссылку и нажмите «ОК».</li>
+                <li>Нажмите <strong>«Обновить»</strong> — серверы появятся в списке.</li>
+            </ol>
+
+            <h4>📁 Импорт из файла</h4>
+            <ol>
+                <li>Перетащите файл конфигурации (<code>.json</code> или <code>.txt</code>) в окно Nekoray.</li>
+                <li>Или нажмите <strong>«Файл»</strong> → <strong>«Импорт»</strong> и выберите файл.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер в списке (один клик).</li>
+                <li>Нажмите <strong>«Подключиться»</strong> (кнопка с треугольником в верхней панели).</li>
+                <li>В трее появится зелёная иконка — вы подключены.</li>
+            </ol>
+
+            <div class="notice tip">
+                💡 Nekoray поддерживает <strong>TUN-режим</strong> — он перехватывает весь трафик системы, включая приложения, которые не умеют работать с прокси.
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Hiddify Desktop -->
+    <div class="client-card" id="HiddifyDesktop">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">🛡️</div>
+            <div class="client-info">
+                <h3>Hiddify Desktop</h3>
+                <div class="badge-group">
+                    <span class="badge green">Windows</span>
+                    <span class="badge blue">macOS</span>
+                    <span class="badge purple">Linux</span>
+                    <span class="badge blue">Бесплатный</span>
+                </div>
+                <p>
+                    Кроссплатформенный клиент с поддержкой <strong>VLESS, VMess, Trojan, Shadowsocks, WireGuard</strong>. 
+                    Простой интерфейс, работа с подписками и встроенный TUN-режим.
+                </p>
+                <div class="client-links">
+                    <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank">⬇ Скачать (GitHub)</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li><strong>Windows:</strong> Скачайте <code>.exe</code> установщик и запустите его.</li>
+                <li><strong>macOS:</strong> Скачайте <code>.dmg</code> и перетащите в папку Applications.</li>
+                <li><strong>Linux:</strong> Скачайте <code>.deb</code>, <code>.rpm</code> или <code>.AppImage</code> для вашей системы.</li>
+            </ol>
+
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>Откройте Hiddify.</li>
+                <li>Нажмите <strong>«Импорт»</strong> → <strong>«Подписка»</strong>.</li>
+                <li>Вставьте ссылку и нажмите «Добавить».</li>
+                <li>Серверы загрузятся автоматически.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер.</li>
+                <li>Нажмите <strong>«Подключиться»</strong>.</li>
+                <li>Готово!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 8. V2RayN -->
+    <div class="client-card" id="V2RayN">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">⚡</div>
+            <div class="client-info">
+                <h3>V2RayN</h3>
+                <div class="badge-group">
+                    <span class="badge green">Windows</span>
+                    <span class="badge blue">Бесплатный</span>
+                    <span class="badge orange">С открытым кодом</span>
+                </div>
+                <p>
+                    Классический клиент для Windows на базе <strong>Xray / V2Ray</strong>. Поддерживает <strong>VMess, VLESS, Shadowsocks, Trojan, SOCKS5</strong>. 
+                    Мощный инструмент с множеством настроек, но при этом понятный даже новичкам.
+                </p>
+                <div class="client-links">
+                    <a href="https://github.com/2dust/v2rayN/releases" target="_blank">⬇ Скачать (GitHub)</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li>Скачайте <code>.zip</code> архив с <a href="https://github.com/2dust/v2rayN/releases" target="_blank">GitHub</a>.</li>
+                <li>Распакуйте в удобную папку (например, <code>C:\v2rayN</code>).</li>
+                <li>Запустите <code>v2rayN.exe</code>.</li>
+            </ol>
+
+            <h4>🔗 Импорт подписки</h4>
+            <ol>
+                <li>Нажмите <strong>«Подписки»</strong> → <strong>«Управление подписками»</strong>.</li>
+                <li>Нажмите <strong>«Добавить»</strong>, введите название и вставьте ссылку.</li>
+                <li>Нажмите «ОК», затем <strong>«Обновить подписки»</strong>.</li>
+                <li>Серверы появятся в списке.</li>
+            </ol>
+
+            <h4>📁 Импорт из файла</h4>
+            <ol>
+                <li>Перетащите файл <code>.json</code> или <code>.txt</code> в окно v2rayN.</li>
+                <li>Или нажмите <strong>«Сервер»</strong> → <strong>«Импорт из буфера обмена»</strong> (если скопировали текст).</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li>Выберите сервер в списке (клик правой кнопкой → «Выбрать активный сервер»).</li>
+                <li>Нажмите <strong>«Включить»</strong> (кнопка с треугольником в верхней панели).</li>
+                <li>В трее появится зелёная иконка.</li>
+            </ol>
+
+            <div class="notice tip">
+                💡 V2RayN поддерживает режим <strong>TUN</strong> (прокси на уровне сети) и <strong>System Proxy</strong> (только для браузера). Для новичков лучше выбрать System Proxy.
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. OpenVPN GUI / Tunnelblick -->
+    <div class="client-card" id="OpenVPN">
+        <div class="client-header" onclick="toggleCard(this)">
+            <div class="client-icon">🔒</div>
+            <div class="client-info">
+                <h3>OpenVPN GUI / Tunnelblick</h3>
+                <div class="badge-group">
+                    <span class="badge green">Windows</span>
+                    <span class="badge blue">macOS</span>
+                    <span class="badge purple">Linux</span>
+                    <span class="badge blue">Бесплатный</span>
+                </div>
+                <p>
+                    Официальные клиенты для протокола <strong>OpenVPN</strong>. Используют <strong>.ovpn</strong>-файлы для подключения. 
+                    Tunnelblick — для macOS, OpenVPN GUI — для Windows.
+                </p>
+                <div class="client-links">
+                    <a href="https://openvpn.net/client/" target="_blank">⬇ OpenVPN Connect</a>
+                    <a href="https://tunnelblick.net/" target="_blank">Tunnelblick (macOS)</a>
+                </div>
+            </div>
+            <span class="toggle-indicator">▼</span>
+        </div>
+        <div class="client-details">
+            <h4>📥 Установка</h4>
+            <ol>
+                <li><strong>Windows:</strong> Скачайте и установите <a href="https://openvpn.net/client/" target="_blank">OpenVPN Connect</a>.</li>
+                <li><strong>macOS:</strong> Скачайте и установите <a href="https://tunnelblick.net/" target="_blank">Tunnelblick</a>.</li>
+                <li><strong>Linux:</strong> Установите через пакетный менеджер (<code>sudo apt install openvpn</code>).</li>
+            </ol>
+
+            <h4>📁 Импорт конфига (.ovpn)</h4>
+            <ol>
+                <li><strong>Windows:</strong> Откройте OpenVPN Connect → нажмите «+» → выберите <strong>«Import Profile»</strong> → укажите <code>.ovpn</code>-файл.</li>
+                <li><strong>macOS:</strong> Дважды кликните на <code>.ovpn</code>-файл → Tunnelblick автоматически импортирует его.</li>
+                <li><strong>Linux:</strong> Используйте команду <code>sudo openvpn --config файл.ovpn</code>.</li>
+            </ol>
+
+            <h4>🔌 Подключение</h4>
+            <ol>
+                <li><strong>Windows:</strong> В OpenVPN Connect выберите профиль и нажмите «Connect».</li>
+                <li><strong>macOS:</strong> В Tunnelblick нажмите «Connect» рядом с нужным профилем.</li>
+                <li>Подождите 5–10 секунд — статус изменится на «Connected».</li>
+            </ol>
+
+            <div class="notice warning">
+                ⚠️ OpenVPN легко обнаруживается DPI (глубокой инспекцией пакетов). Если вы в стране с жёсткой блокировкой, используйте <strong>VLESS+Reality</strong> или <strong>Trojan</strong>.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- СОВЕТЫ ПО ВЫБОРУ -->
+    <!-- ============================================================ -->
+    <div class="tip-box">
+        <h3>💡 Какой клиент выбрать?</h3>
         <ul>
-            <li><strong>Вашего VPN-провайдера</strong> — после оплаты тарифа вам приходит ссылка (в личном кабинете, на почте или в Telegram).</li>
-            <li><strong>Друзей или знакомых</strong> — если у них есть рабочий VPN и они готовы поделиться.</li>
-            <li><strong>Бесплатных сервисов</strong> — но учтите, что они часто медленные и ненадёжные.</li>
-        </ul>
-
-        <div class="notice important">
-            ⚠️ <strong>Важно:</strong> Подписка — это ваш личный ключ. Не передавайте её никому и не публикуйте в интернете.
-        </div>
-
-        <p style="margin-top: 0.8rem;">
-            👉 Если у вас ещё нет подписки, найдите надёжного провайдера. 
-            Хороший вариант — воспользоваться рекомендациями в проверенных Telegram-каналах или спросить у друзей.
-        </p>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- ШАГ 4: ИМПОРТИРОВАТЬ ПОДПИСКУ -->
-    <!-- ============================================================ -->
-    <div class="step">
-        <span class="step-number">Шаг 4</span>
-        <h3>Импортировать подписку в Hiddify</h3>
-        <p>
-            Теперь самый важный шаг. Скопируйте вашу ссылку-подписку и импортируйте её в Hiddify.
-        </p>
-
-        <h4 style="margin-top: 0.5rem; font-weight: 600;">📱 Мобильная версия (Android / iOS)</h4>
-        <ol>
-            <li>Откройте Hiddify на телефоне.</li>
-            <li>На главном экране нажмите <strong>«Импорт»</strong> (или иконку «+»).</li>
-            <li>Выберите <strong>«Подписка»</strong>.</li>
-            <li>Вставьте скопированную ссылку и нажмите <strong>«Добавить»</strong>.</li>
-            <li>Подождите 2–3 секунды — серверы загрузятся и появятся в списке.</li>
-        </ol>
-
-        <h4 style="margin-top: 1.2rem; font-weight: 600;">💻 Десктопная версия (Windows / macOS / Linux)</h4>
-        <ol>
-            <li>Откройте Hiddify на компьютере.</li>
-            <li>Нажмите <strong>«Импорт»</strong> в верхнем меню.</li>
-            <li>Выберите <strong>«Подписка»</strong>.</li>
-            <li>Вставьте ссылку и нажмите <strong>«Добавить»</strong>.</li>
-            <li>Серверы загрузятся автоматически.</li>
-        </ol>
-
-        <div class="notice tip">
-            💡 <strong>Совет:</strong> Если у вас есть файл конфигурации (<code>.json</code> или <code>.txt</code>), 
-            вы можете импортировать его так же — через «Импорт» → «Из файла».
-        </div>
-
-        <div class="screenshot-placeholder">
-            🖼️ Здесь должен быть скриншот Hiddify с кнопкой «Импорт». 
-            <br><span style="font-size: 0.8rem;">(В реальной версии вы вставите сюда изображение)</span>
-        </div>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- ШАГ 5: ПОДКЛЮЧИТЬСЯ -->
-    <!-- ============================================================ -->
-    <div class="step">
-        <span class="step-number">Шаг 5</span>
-        <h3>Подключиться и проверить</h3>
-        <p>
-            Всё готово! Осталось только нажать одну кнопку.
-        </p>
-
-        <ol>
             <li>
-                <strong>Выберите сервер</strong> из списка — обычно они называются по странам (например, «🇳🇱 Netherlands», «🇩🇪 Germany»). 
-                Выберите тот, где меньше нагрузка.
+                <strong>Для Android:</strong> 
+                <a href="#v2rayNG" style="color: #0b1a2e; text-decoration: underline dotted;">v2rayNG</a> (надёжный) или 
+                <a href="#Nekobox" style="color: #0b1a2e; text-decoration: underline dotted;">Nekobox</a> (современный).
             </li>
             <li>
-                <strong>Нажмите «Подключиться»</strong> — большую кнопку в центре экрана (или переключатель).
+                <strong>Для iOS:</strong> 
+                <a href="#Shadowrocket" style="color: #0b1a2e; text-decoration: underline dotted;">Shadowrocket</a> (лучший функционал) или 
+                <a href="#Hiddify" style="color: #0b1a2e; text-decoration: underline dotted;">Hiddify</a> (бесплатный).
             </li>
             <li>
-                <strong>Подождите 2–3 секунды</strong> — статус изменится на «Подключено».
+                <strong>Для Windows:</strong> 
+                <a href="#V2RayN" style="color: #0b1a2e; text-decoration: underline dotted;">V2RayN</a> (проверенный) или 
+                <a href="#Nekoray" style="color: #0b1a2e; text-decoration: underline dotted;">Nekoray</a> / 
+                <a href="#HiddifyDesktop" style="color: #0b1a2e; text-decoration: underline dotted;">Hiddify</a> (для VLESS+Reality).
             </li>
             <li>
-                <strong>Проверьте, что всё работает:</strong>
-                <ul style="margin-top: 0.3rem;">
-                    <li>Зайдите на <a href="https://2ip.ru" target="_blank" style="color: #0b1a2e; text-decoration: underline dotted;">2ip.ru</a> — ваш IP должен измениться.</li>
-                    <li>Откройте YouTube или любой сайт — они должны загружаться.</li>
-                </ul>
+                <strong>Для macOS:</strong> 
+                <a href="#HiddifyDesktop" style="color: #0b1a2e; text-decoration: underline dotted;">Hiddify</a> или 
+                <a href="#Nekoray" style="color: #0b1a2e; text-decoration: underline dotted;">Nekoray</a>.
             </li>
-        </ol>
-
-        <div class="notice success">
-            ✅ <strong>Готово!</strong> Вы подключены к VPN. Ваш интернет-трафик зашифрован, а настоящий IP-адрес скрыт.
-        </div>
-
-        <div class="notice warning">
-            ⚠️ <strong>Если не подключается:</strong>
-            <ul style="margin-top: 0.3rem; margin-left: 1.2rem;">
-                <li>Проверьте интернет (без VPN сайты должны открываться).</li>
-                <li>Убедитесь, что вы правильно скопировали подписку.</li>
-                <li>Попробуйте выбрать другой сервер из списка.</li>
-                <li>Перезапустите Hiddify и попробуйте снова.</li>
-                <li>Если ничего не помогает — перечитайте шаг 4, возможно, подписка импортирована неправильно.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- БОНУС: ЧТО ДЕЛАТЬ, ЕСЛИ НЕ РАБОТАЕТ -->
-    <!-- ============================================================ -->
-    <h2 style="margin-top: 2.5rem;">❓ Частые проблемы</h2>
-
-    <div class="step" style="border-left: 5px solid #f59e0b;">
-        <h3 style="margin-top: 0;">Подписка не импортируется</h3>
-        <ul>
-            <li>Проверьте, что ссылка начинается с <code>https://</code> или <code>vless://</code> / <code>vmess://</code>.</li>
-            <li>Убедитесь, что вы скопировали <strong>всю</strong> ссылку (без пробелов и лишних символов).</li>
-            <li>Попробуйте импортировать вручную через файл (сохраните ссылку как <code>.txt</code> и импортируйте).</li>
-        </ul>
-    </div>
-
-    <div class="step" style="border-left: 5px solid #3b82f6;">
-        <h3 style="margin-top: 0;">VPN подключился, но сайты не открываются</h3>
-        <ul>
-            <li>В настройках Hiddify включите <strong>«DNS-over-HTTPS»</strong> или укажите DNS <code>1.1.1.1</code> (Cloudflare).</li>
-            <li>Попробуйте переключить протокол (если в подписке несколько вариантов).</li>
-            <li>Проверьте, не включён ли режим «только для определённых приложений» (Split Tunneling) — отключите для теста.</li>
-        </ul>
-    </div>
-
-    <div class="step" style="border-left: 5px solid #dc2626;">
-        <h3 style="margin-top: 0;">Ошибка «TLS handshake failed» или «Ошибка сертификата»</h3>
-        <ul>
-            <li>Обычно это значит, что ваш провайдер блокирует VPN-соединение.</li>
-            <li>Попробуйте выбрать сервер с <strong>другим протоколом</strong> (например, вместо VLESS используйте Trojan).</li>
-            <li>Включите в Hiddify режим <strong>«Маскировка» (Obfuscation)</strong> или выберите профиль с Reality.</li>
-        </ul>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- ИТОГОВЫЙ БЛОК -->
-    <!-- ============================================================ -->
-    <div style="background: #0b1a2e; color: #ffffff; border-radius: 16px; padding: 2rem 2.5rem; margin-top: 2.5rem;">
-        <h3 style="color: #ffffff; margin-top: 0; font-size: 1.4rem;">🎯 Вы справились!</h3>
-        <ul style="color: #d1d9e8; list-style: none; padding: 0;">
-            <li style="padding: 0.4rem 0; padding-left: 1.8rem; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2310b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat; background-size: 1.2rem;">
-                ✅ Скачали и установили Hiddify
-            </li>
-            <li style="padding: 0.4rem 0; padding-left: 1.8rem; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2310b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat; background-size: 1.2rem;">
-                ✅ Получили и импортировали подписку
-            </li>
-            <li style="padding: 0.4rem 0; padding-left: 1.8rem; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2310b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat; background-size: 1.2rem;">
-                ✅ Подключились и проверили, что VPN работает
+            <li>
+                <strong>Для Linux:</strong> 
+                <a href="#Nekoray" style="color: #0b1a2e; text-decoration: underline dotted;">Nekoray</a> или 
+                <a href="#HiddifyDesktop" style="color: #0b1a2e; text-decoration: underline dotted;">Hiddify</a>.
             </li>
         </ul>
-        <p style="color: #94a3b8; margin-top: 1.2rem; font-size: 0.95rem;">
-            Теперь вы знаете, как настроить VPN с нуля. Если что-то пошло не так — перечитайте раздел «Частые проблемы» выше.
+        <p style="margin-top: 0.8rem; font-size: 0.95rem; color: #475569;">
+            ⚠️ Всегда скачивайте клиенты только с <strong>официальных репозиториев</strong> (GitHub, Google Play, App Store), 
+            чтобы избежать вредоносных версий.
         </p>
     </div>
 
     <!-- ПОДВАЛ -->
     <footer class="footer">
         <span>© 2026 · VPN для самых маленьких</span>
-        <span><a href="#top" style="color: #0b1a2e; text-decoration: none; border-bottom: 1px dotted #94a3b8;">⬆ Наверх</a></span>
+        <span>Сделано для тех, кто хочет разобраться</span>
     </footer>
 
 </div>
+
+<script>
+    function toggleCard(headerElement) {
+        const card = headerElement.closest('.client-card');
+        if (!card) return;
+        card.classList.toggle('open');
+    }
+
+    // Закрываем все карточки, кроме тех, на которые есть якорь (если перешли по ссылке)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Если есть якорь в URL — раскрываем соответствующую карточку
+        const hash = window.location.hash;
+        if (hash) {
+            const targetId = hash.replace('#', '');
+            const targetCard = document.getElementById(targetId);
+            if (targetCard) {
+                // Закрываем все
+                document.querySelectorAll('.client-card').forEach(c => c.classList.remove('open'));
+                // Открываем нужную
+                targetCard.classList.add('open');
+                // Плавно скроллим к ней
+                setTimeout(() => {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
